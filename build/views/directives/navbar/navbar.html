@@ -1,0 +1,64 @@
+<div>
+
+    <!-- Default navbar -->
+
+    <div ng-if="!ctrl.authService.isLoggedIn" class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper landing-nav">
+                <a ui-sref="home.landing" class="brand-logo logo"><img src="build/dist/img/MarshallWhite.png" height="40" width=""></a>
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- Admin navbar -->
+
+    <div ng-if="ctrl.authService.isAdmin">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a ui-sref="home.landing" class="brand-logo logo"><img src="build/dist/img/MarshallWhite.png" height="40" width=""></a>
+
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li class="welcome-message">Welcome, {{ ctrl.user.firstName + ' ' + ctrl.user.lastName }}</li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <aside ng-if="!hideSide">
+            <ul class="side-nav collapsible" data-collapsible="expandable" material-collapsible id="bar">
+                <li><a class="waves-effect" ui-sref="home.admin.dashboard"><i class="material-icons md-light">home</i> Home</a></li>
+                <li><a class="waves-effect" ui-sref="home.admin.info({adminId: ctrl.user.id, adminInfoId: ctrl.user.id})"><i class="material-icons md-light">account_circle</i> Manage Profile</a></li>
+                <li><a class="waves-effect" ui-sref="home.admin.users"><i class="material-icons md-light">supervisor_account</i> Manage Users</a></li>
+                <li><a class="waves-effect" ui-sref="home.admin.summit.management"><i class="material-icons md-light">event</i> Manage Summits</a></li>
+                <li><a class="waves-effect" ui-sref="home.admin.reporting"><i class="material-icons md-light">timeline</i> View Reports</a></li>
+                <li><a class="waves-effect" ui-sref="home.admin.settings.management"><i class="material-icons md-light">settings</i> Site Settings</a></li>
+                <li><a class="waves-effect" ng-click="ctrl.authService.logout()"><i class="material-icons md-light">exit_to_app</i> Logout</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Judge navbar -->
+
+    <div ng-if="ctrl.authService.isJudge">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper landing-nav">
+                    <a ui-sref="home.landing" class="brand-logo logo"><img src="build/dist/img/MarshallWhite.png" height="40" width=""></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li class="welcome-message">Welcome, {{ctrl.user.firstName + ' ' + ctrl.user.lastName}}</li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <aside ng-if="!hideSide">
+            <ul id="bar" class="side-nav">
+                <li><a class="waves-effect" ui-sref="home.judge.dashboard"><i class="material-icons md-light">home</i> Home</a></li>
+                <li><a class="waves-effect" ui-sref="home.judge.info"><i class="material-icons md-light">account_circle</i> Manage Profile</a></li>
+                <li><a class="waves-effect" ng-click="ctrl.authService.logout()"><i class="material-icons md-light">exit_to_app</i> Logout</a></li>
+            </ul>
+        </aside>
+    </div>
+</div>
